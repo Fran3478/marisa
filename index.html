@@ -61,48 +61,11 @@
       0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
       100% { transform: translateY(110vh) rotate(360deg); opacity: 1; }
     }
-
-    @keyframes firework {
-      0% { transform: translate(var(--x), var(--initialY)); width: var(--initialSize); opacity: 1; }
-      50% { width: 0.5vmin; opacity: 1; }
-      100% { width: var(--finalSize); opacity: 0; }
-    }
-
-    .firework {
-      --initialSize: 0.5vmin;
-      --finalSize: 60vmin;
-      --particleSize: 1vmin;
-      --color1: yellow;
-      --color2: khaki;
-      --color3: white;
-      --color4: lime;
-      --color5: gold;
-      --color6: mediumseagreen;
-      --y: -30vmin;
-      --x: -50%;
-      --initialY: 60vmin;
-      content: "";
-      animation: firework 2s ease-out forwards;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, var(--y));
-      width: var(--initialSize);
-      aspect-ratio: 1;
-      background: radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 50% 0%,
-                  radial-gradient(circle, var(--color2) var(--particleSize), #0000 0) 100% 50%,
-                  radial-gradient(circle, var(--color3) var(--particleSize), #0000 0) 50% 100%,
-                  radial-gradient(circle, var(--color4) var(--particleSize), #0000 0) 0% 50%,
-                  radial-gradient(circle, var(--color5) var(--particleSize), #0000 0) 22% 90%,
-                  radial-gradient(circle, var(--color6) var(--particleSize), #0000 0) 45% 90%;
-      background-size: var(--initialSize) var(--initialSize);
-      background-repeat: no-repeat;
-    }
   </style>
 </head>
 <body>
   <div class="confetti" id="confetti-container"></div>
-  <h1>Feliz Cumpleaños Marisa</h1>
+  <h1>Feliz Cumpleaños Marisita!!</h1>
   <img src="https://res.cloudinary.com/dacbde3so/image/upload/v1752695243/cute-birthday-cat-with-confetti-cartoon-icon-illustration-animal-birthday-icon-concept-isolated-prem_ljbjad.webp" alt="Gatito lindo">
 
   <script>
@@ -121,38 +84,8 @@
       confetti.style.animationDuration = 4 + Math.random() * 3 + "s";
       confettiContainer.appendChild(confetti);
     }
+
     setInterval(spawnConfetti, 50);
-
-    function createFirework(x, y, colorSet) {
-      setTimeout(() => {
-        const fw = document.createElement("div");
-        fw.className = "firework";
-        fw.style.setProperty("--x", x + "px");
-        fw.style.setProperty("--initialY", "60vmin");
-        fw.style.left = x + "px";
-        fw.style.top = y + "px";
-        fw.style.setProperty("--color1", colorSet[0]);
-        fw.style.setProperty("--color2", colorSet[1]);
-        fw.style.setProperty("--color3", colorSet[2]);
-        fw.style.setProperty("--color4", colorSet[3]);
-        fw.style.setProperty("--color5", colorSet[4]);
-        fw.style.setProperty("--color6", colorSet[5]);
-        document.body.appendChild(fw);
-        setTimeout(() => fw.remove(), 2000);
-      }, 900);
-    }
-
-    function launchShow() {
-      const positions = ["20%", "35%", "50%", "65%", "80%"]; // posibles ubicaciones
-      for (let i = 0; i < 3; i++) {
-        const pos = positions[Math.floor(Math.random() * positions.length)];
-        const px = window.innerWidth * parseInt(pos) / 100;
-        const colorSet = Array.from({length: 6}, () => colors[Math.floor(Math.random() * colors.length)]);
-        createFirework(px, window.innerHeight * 0.4, colorSet);
-      }
-    }
-
-    setInterval(launchShow, 2500);
   </script>
 </body>
 </html>
